@@ -12,7 +12,7 @@ const app = express();
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-const frontendURL = "https://new-blood-bank-nw9a.vercel.app/";
+const frontendURL = "https://new-blood-bank-nw9a.vercel.app";
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
