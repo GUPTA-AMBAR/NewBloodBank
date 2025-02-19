@@ -1,5 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Form from "../../components/shared/form/Form";
 import { useSelector } from 'react-redux';
 import Spinner from "../../components/shared/Spinner";
