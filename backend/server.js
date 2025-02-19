@@ -12,6 +12,8 @@ const app = express();
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "./client/build")));
 
+const frontendURL = "https://new-blood-bank-nw9a.vercel.app/";
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
@@ -21,6 +23,8 @@ app.get("*", (req, res) => {
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
+    origin: frontendURL,
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
 
