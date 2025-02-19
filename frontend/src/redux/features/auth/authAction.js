@@ -1,4 +1,4 @@
-import { createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../../services/API';
 import toast from 'react-hot-toast';
 
@@ -7,26 +7,26 @@ import toast from 'react-hot-toast';
 
 export const userLogin = createAsyncThunk(
     "auth/login",
-    async ({ role, email, password }, { rejectWithValue })=>{
-        
+    async ({ role, email, password }, { rejectWithValue }) => {
+
         try {
-            const {data} = await API.post("auth/login",{role, email, password});
+            const { data } = await API.post("api/v1/auth/login", { role, email, password });
             // console.log("Data : ",data);
-            console.log("User : ",data.user);
-            
-            if(data.success){
+            console.log("User : ", data.user);
+
+            if (data.success) {
                 toast.success(data.message);
                 localStorage.setItem("token", data.token);
-                setTimeout(() => {window.location.replace("/");},1000);
+                setTimeout(() => { window.location.replace("/"); }, 1000);
             }
-            return data; 
+            return data;
 
         } catch (error) {
-            if(error.response&&error.response.data.message){
+            if (error.response && error.response.data.message) {
                 toast.error(error.response.data.message);
                 return rejectWithValue(error.response.data.message);
             }
-            else{
+            else {
                 toast.error(error.message);
                 return rejectWithValue(error.message);
             }
@@ -43,10 +43,10 @@ export const userRegister = createAsyncThunk(
         try {
             const { data } = await API.post("auth/register", { email, password, role, name, hospitalName, organisationName, phone, address, website });
             console.log("data : ", data);
-            
+
             if (data?.success) {
                 toast.success("User registered successfully!");
-                setTimeout(() => {window.location.replace("/login");},1000);
+                setTimeout(() => { window.location.replace("/login"); }, 1000);
                 return data;
             }
         } catch (error) {
@@ -67,19 +67,19 @@ export const userRegister = createAsyncThunk(
 
 export const getUser = createAsyncThunk(
     "auth/getCurrentUser",
-    async ({rejectWithValue})=>{
+    async ({ rejectWithValue }) => {
         try {
             const token = localStorage.getItem("token");
-            if(!token){
+            if (!token) {
                 throw new Error("No token found");
             }
-            const {data} = await API.get("auth/current-user");
+            const { data } = await API.get("auth/current-user");
             return data;
         } catch (error) {
-            if(error.message === "No token found"){
+            if (error.message === "No token found") {
                 toast.error("Please log in to access this page.");
             }
-            else{
+            else {
                 toast.error(error.message);
                 return rejectWithValue(error.message);
             }
