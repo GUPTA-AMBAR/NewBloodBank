@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InputForm from './InputForm';
 import { Link } from 'react-router-dom';
-import { handleLogin,handleRegister } from '../../../services/authService';
+import { handleLogin, handleRegister } from '../../../services/authService';
 
 const Form = ({ formTitle, submitBtn, formType }) => {
   const [email, setEmail] = useState('');
@@ -16,9 +16,9 @@ const Form = ({ formTitle, submitBtn, formType }) => {
 
   return (
     <div>
-      <form onSubmit={(e)=>{
-        if(formType === "login") return handleLogin(e,email,password,role);
-        else if(formType === "register") return handleRegister(e,email,password,role,name,hospitalName,organisationName,phone,address,website);
+      <form onSubmit={(e) => {
+        if (formType === "login") return handleLogin(e, email, password, role);
+        else if (formType === "register") return handleRegister(e, email, password, role, name, hospitalName, organisationName, phone, address, website);
       }} >
         <section
           className="h-100 bg-info"
@@ -53,7 +53,7 @@ const Form = ({ formTitle, submitBtn, formType }) => {
                         <span ><h3 className="mb-3 text-uppercase d-flex justify-content-center">{formTitle}</h3></span>
                         <hr />
 
-                        <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                        {/* <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
                           <div className="form-check form-check-inline mb-0 me-4">
                             <input className="form-check-input" type="radio" name="role" id="donarRadio" value={"donar"} onChange={(e) => setRole(e.target.value)} defaultChecked />
                             <label className="form-check-label" htmlFor="forDonar">Donar</label>
@@ -70,7 +70,7 @@ const Form = ({ formTitle, submitBtn, formType }) => {
                             <input className="form-check-input" type="radio" name="role" id="organisationRadio" value={"organisation"} onChange={(e) => setRole(e.target.value)} />
                             <label className="form-check-label" htmlFor="forOrganisation">Organisation</label>
                           </div>
-                        </div>
+                        </div> */}
 
                         {/* SWITCH-STATEMENT */}
 
@@ -79,6 +79,25 @@ const Form = ({ formTitle, submitBtn, formType }) => {
                             case formType === "login": {
                               return (
                                 <>
+                                  <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                    <div className="form-check form-check-inline mb-0 me-4">
+                                      <input className="form-check-input" type="radio" name="role" id="donarRadio" value={"donar"} onChange={(e) => setRole(e.target.value)} defaultChecked />
+                                      <label className="form-check-label" htmlFor="forDonar">Donar</label>
+                                    </div>
+                                    <div className="form-check form-check-inline mb-0 me-4">
+                                      <input className="form-check-input" type="radio" name="role" id="adminRadio" value={"admin"} onChange={(e) => setRole(e.target.value)} />
+                                      <label className="form-check-label" htmlFor="forAdmin">Admin</label>
+                                    </div>
+                                    <div className="form-check form-check-inline mb-0">
+                                      <input className="form-check-input" type="radio" name="role" id="hospitalRadio" value={"hospital"} onChange={(e) => setRole(e.target.value)} />
+                                      <label className="form-check-label" htmlFor="forHospital">Hospital</label>
+                                    </div>
+                                    <div className="form-check form-check-inline mb-0">
+                                      <input className="form-check-input" type="radio" name="role" id="organisationRadio" value={"organisation"} onChange={(e) => setRole(e.target.value)} />
+                                      <label className="form-check-label" htmlFor="forOrganisation">Organisation</label>
+                                    </div>
+                                  </div>
+
                                   <div className="row-2">
                                     <InputForm labelText="Email" labelFor="forEmail" inputType="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     <InputForm labelText="Password" labelFor="forPassword" inputType="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -94,6 +113,21 @@ const Form = ({ formTitle, submitBtn, formType }) => {
                             case formType === "register": {
                               return (
                                 <>
+                                  <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                    <div className="form-check form-check-inline mb-0 me-4">
+                                      <input className="form-check-input" type="radio" name="role" id="donarRadio" value={"donar"} onChange={(e) => setRole(e.target.value)} defaultChecked />
+                                      <label className="form-check-label" htmlFor="forDonar">Donar</label>
+                                    </div>
+                                    <div className="form-check form-check-inline mb-0">
+                                      <input className="form-check-input" type="radio" name="role" id="hospitalRadio" value={"hospital"} onChange={(e) => setRole(e.target.value)} />
+                                      <label className="form-check-label" htmlFor="forHospital">Hospital</label>
+                                    </div>
+                                    <div className="form-check form-check-inline mb-0">
+                                      <input className="form-check-input" type="radio" name="role" id="organisationRadio" value={"organisation"} onChange={(e) => setRole(e.target.value)} />
+                                      <label className="form-check-label" htmlFor="forOrganisation">Organisation</label>
+                                    </div>
+                                  </div>
+
                                   <div className="row">
                                     <InputForm labelText="Email" labelFor="forEmail" inputType="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                                     <InputForm labelText="Password" labelFor="forPassword" inputType="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -112,7 +146,9 @@ const Form = ({ formTitle, submitBtn, formType }) => {
 
                                     <InputForm labelText="Phone" labelFor="forPhone" inputType="tel" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                                     <InputForm labelText="Address" labelFor="forAddress" inputType="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
-                                    <InputForm labelText="Website" labelFor="forWebsite" inputType="url" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} />
+                                    {(role === "organisation" || role==="hospital") && (
+                                      <InputForm labelText="Website" labelFor="forWebsite" inputType="url" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} />
+                                    )}
                                   </div>
                                 </>
                               )
