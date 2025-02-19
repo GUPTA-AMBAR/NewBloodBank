@@ -55,7 +55,13 @@ const app = express();
 // ✅ Load CORS First
 const frontendURL = "https://new-blood-bank-nw9a.vercel.app";
 app.use(cors({
-    origin: frontendURL,
+    origin: function (origin, callback) {
+        if (!origin || origin.endsWith(".vercel.app")) {
+            callback(null, true);  // ✅ Allow all Vercel subdomains
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
 }));
 
