@@ -56,7 +56,6 @@ const app = express();
 const frontendURL = "https://new-blood-bank-nw9a.vercel.app";
 app.use(cors({
     origin: frontendURL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
 
