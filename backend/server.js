@@ -67,6 +67,10 @@ app.use(morgan("dev"));
 connectDatabase();
 
 // ✅ Define API Routes
+app.get("/", (req, res) => {
+    res.send("Welcome to the Blood Bank API!");
+});
+
 app.use("/api/v1/auth", require("./routes/authRoutes.js"));
 app.use("/api/v1/inventory", require("./routes/inventoryRoutes.js"));
 app.use("/api/v1/analytics", require("./routes/analyticsRoutes"));
