@@ -48,7 +48,6 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
 const connectDatabase = require("./db/connectDataBase.js");
-const path = require("path");
 
 dotenv.config();
 const app = express();
@@ -61,25 +60,20 @@ app.use(cors({
     credentials: true,
 }));
 
-// ✅ Middleware for parsing JSON & Logging
+// ✅ Middleware for JSON & Logging
 app.use(express.json());
 app.use(morgan("dev"));
 
 // ✅ Connect Database
 connectDatabase();
 
-// ✅ Define API Routes before serving static frontend
+// ✅ Define API Routes
 app.use("/api/v1/auth", require("./routes/authRoutes.js"));
 app.use("/api/v1/inventory", require("./routes/inventoryRoutes.js"));
 app.use("/api/v1/analytics", require("./routes/analyticsRoutes"));
 app.use("/api/v1/admin", require("./routes/adminRoutes.js"));
 
-// ✅ Serve React Static Files (After API Routes)
-app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 // ✅ Start Server
 const PORT = process.env.PORT || 8080;
