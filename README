@@ -1,1 +1,79 @@
+🩸 Blood Bank Management System
 
+A full-stack blood bank web application that allows users to register as donors, request blood, and manage donations. 
+Built using MERN (MongoDB, Express, React, Node.js) with a secure login system and an intuitive UI.
+
+🚀 Features
+✅ User Authentication – Secure login/signup for donors & hospitals
+✅ Blood Request Management – Request blood and track requests
+✅ Donor Registration – Find & register as a blood donor
+✅ Admin Dashboard – Manage donors, blood stock, and requests
+
+
+🛠 Tech Stack
+Frontend: React.js, Tailwind CSS
+Backend: Node.js, Express.js
+Database: MongoDB
+Authentication: JWT, bcrypt
+Hosting: Vercel (Frontend), Render (Backend)
+
+
+🛠 Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/yourusername/blood-bank-app.git
+cd blood-bank-app
+
+
+2️⃣ Install dependencies
+
+Backend
+cd backend
+npm install
+
+Frontend
+cd frontend
+npm install
+
+
+3️⃣ Configure environment variables
+Create a .env file in the backend/ directory and add:
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=5000
+
+
+4️⃣ Start the app
+
+Run the backend:
+cd backend
+npm run dev
+
+Run the frontend:
+cd frontend
+npm start
+
+
+📡 API Endpoints
+Method	Endpoint	Description
+POST	/api/auth/register	Register a new user
+POST	/api/auth/login	Login a user
+GET	/api/donors	Fetch available donors
+POST	/api/request	Request blood
+GET	/api/requests	Get all blood requests
+
+
+🚀 Future Enhancements
+🔹 Add Google Maps API to show nearby donors
+🔹 Implement real-time chat between donors & requesters
+🔹 Integrate SMS/email notifications for urgent requests
+🔹 Add AI-based donation prediction
+
+
+🤝 Contributing
+Contributions are welcome! Feel free to fork this repository, make changes, and submit a pull request.
+
+
+📬 Contact
+👤 Ambar Gupta
+📧 Email: your-ambargupta1290@gmail.com
+🔗 GitHub: github.com/GUPTA-AMBAR
